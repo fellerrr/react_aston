@@ -1,9 +1,17 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
-    <>
-        Emty app
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function HomePage() {
+  return <h1>HomePage</h1>;
 }
 
 export default App
