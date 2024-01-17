@@ -16,3 +16,4 @@ yarn.lock
 *.yml
 *.md
 *.d.ts
+*.cjs
