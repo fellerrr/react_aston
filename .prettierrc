@@ -1,18 +1,18 @@
 {
-	"singleQuote": true,
-	"jsxSingleQuote": true,
-	"semi": false,
-	"printWidth": 120,
-	"trailingComma": "none",
-	"tabWidth": 2,
-	"plugins": ["@trivago/prettier-plugin-sort-imports"],
-	"importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true,
-	"overrides": [
-	  {
-		"files": ".prettierrc",
-		"options": { "parser": "json" }
-	  }
-	]
-  }
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": false,
+  "printWidth": 120,
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": { "parser": "json" }
+    }
+  ]
+}

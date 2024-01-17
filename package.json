@@ -2,6 +2,7 @@
   "name": "react_aston",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://fellerrr.github.io/react_aston/",
   "type": "module",
   "scripts": {
     "dev": "vite",
