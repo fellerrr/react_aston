@@ -1,0 +1,19 @@
+.Item {
+  display: flex;
+  justify-content: flex-start;
+  transition: background-color 1s;
+  align-items: center;
+  margin: 10px auto;
+  border: 1px dashed #ccc;
+  border-radius: 20px;
+  gap: 20px;
+}
+
+.Item-text {
+  width: 90%;
+  padding: 3px 10px;
+}
+
+.Item-image {
+  border-radius: 20px;
+}

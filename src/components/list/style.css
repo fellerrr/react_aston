@@ -1,0 +1,6 @@
+.List {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+}
