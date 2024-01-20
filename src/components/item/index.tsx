@@ -13,7 +13,7 @@ interface ItemProps {
 }
 
 export function Item(props: ItemProps) {
-  const type = props.item.type ? props.item.type : 'No'
+  const type = props.item.type || 'No'
   return (
     <div className='Item'>
       <img className='Item-image' src={props.item.image} alt={props.item.name} />
