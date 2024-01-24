@@ -1,13 +1,19 @@
+import { useState } from 'react'
+
 import { Head } from '../components/head'
 import { List } from '../components/list'
 import PageLayout from '../components/page-layout'
+import { SearchText } from '../store/SearchContext'
 
 function HomePage() {
   const title = 'HomePage'
+  const [searchText, setSearchText] = useState<string>('')
   return (
     <PageLayout>
-      <Head title={title} />
-      <List />
+      <SearchText.Provider value={{ searchText, setSearchText }}>
+        <Head title={title} />
+        <List />
+      </SearchText.Provider>
     </PageLayout>
   )
 }

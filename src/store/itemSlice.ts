@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export interface Item {
+export interface ItemProps {
   id: number
   name: string
   image: string
@@ -9,12 +9,12 @@ export interface Item {
   type: string
   gender: string
 }
-export interface Items {
-  results: Item[]
+export interface ItemsProps {
+  results: ItemProps[]
 }
 
 export interface ItemState {
-  items: Items
+  items: ItemsProps
   status: string
   error: string | undefined
 }
