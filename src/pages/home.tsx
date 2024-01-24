@@ -3,18 +3,17 @@ import { useState } from 'react'
 import { Head } from '../components/head'
 import { List } from '../components/list'
 import PageLayout from '../components/page-layout'
-import { CharactersContext } from '../store/CharactersContext'
-import { ItemsProps } from '../store/itemSlice'
+import { SearchText } from '../store/SearchContext'
 
 function HomePage() {
   const title = 'HomePage'
-  const [characters, setCharacters] = useState<ItemsProps | null>(null)
+  const [searchText, setSearchText] = useState<string>('')
   return (
     <PageLayout>
-      <CharactersContext.Provider value={{ characters, setCharacters }}>
+      <SearchText.Provider value={{ searchText, setSearchText }}>
         <Head title={title} />
         <List />
-      </CharactersContext.Provider>
+      </SearchText.Provider>
     </PageLayout>
   )
 }

@@ -1,20 +1,13 @@
 import { useContext, useState } from 'react'
 
-import useDebounce from '../../hooks/useDebounce'
-import { CharactersContext } from '../../store/CharactersContext'
+import { SearchText } from '../../store/SearchContext'
 import { useGetCharactersQuery } from '../../store/query'
 import './style.css'
 
 export const SearchPanel = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearchTerm = useDebounce(searchTerm, 300)
-  const { setCharacters } = useContext(CharactersContext)
-
-  const { data } = useGetCharactersQuery(debouncedSearchTerm)
-
-  const handleSearch = () => {
-    setCharacters(data)
-  }
+  const [inputValue, setInputValue] = useState('')
+  const { searchText, setSearchText } = useContext(SearchText)
+  useGetCharactersQuery(searchText)
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -22,12 +15,16 @@ export const SearchPanel = () => {
     }
   }
 
+  const handleSearch = () => {
+    setSearchText(inputValue)
+  }
+
   return (
     <div className='search-panel'>
       <input
         type='text'
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyPress}
         placeholder='Enter search query'
         className='search-input'
