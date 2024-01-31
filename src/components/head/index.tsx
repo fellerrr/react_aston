@@ -6,9 +6,10 @@ import './style.css'
 
 interface HeadProps {
   title: string
+  homePage?: boolean
 }
 
-export function Head({ title }: HeadProps) {
+export function Head({ title, homePage }: HeadProps) {
   const { isLoggedIn, email } = useAppSelector((state) => state.auth)
   return (
     <div className='Head'>
@@ -16,7 +17,7 @@ export function Head({ title }: HeadProps) {
         <h1>{title}</h1>
         {isLoggedIn ? <UserInfo email={email} /> : <Controls />}
       </div>
-      <SearchPanel />
+      {homePage && <SearchPanel />}
     </div>
   )
 }

@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <PageLayout>
       <SearchText.Provider value={{ searchText, setSearchText }}>
-        <Head title={title} />
+        <Head title={title} homePage={true} />
         <List />
       </SearchText.Provider>
     </PageLayout>
