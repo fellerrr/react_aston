@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import itemsReducer from './itemSlice'
+import authReducer from './authSlice'
 import { rickAndMortyApi } from './query'
 
 export const store = configureStore({
   reducer: {
     items: itemsReducer,
+    auth: authReducer,
 
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer
   },

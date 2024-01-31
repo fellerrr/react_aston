@@ -1,4 +1,7 @@
+import { useAppSelector } from '../../store/hooks'
+import { Controls } from '../controls'
 import { SearchPanel } from '../search-panel'
+import { UserInfo } from '../user-info'
 import './style.css'
 
 interface HeadProps {
@@ -6,9 +9,13 @@ interface HeadProps {
 }
 
 export function Head({ title }: HeadProps) {
+  const { isLoggedIn, email } = useAppSelector((state) => state.auth)
   return (
     <div className='Head'>
-      <h1>{title}</h1>
+      <div className='controls'>
+        <h1>{title}</h1>
+        {isLoggedIn ? <UserInfo email={email} /> : <Controls />}
+      </div>
       <SearchPanel />
     </div>
   )
