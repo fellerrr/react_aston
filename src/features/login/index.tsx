@@ -1,10 +1,9 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
-import { login } from '../../store/authSlice'
-
 import PageLayout from '../../components/page-layout'
+import { login } from '../../store/authSlice'
 import './style.css'
 
 export const LoginForm = () => {
@@ -33,7 +32,7 @@ export const LoginForm = () => {
     <PageLayout>
       <div className='container-form'>
         <form className='login-form' onSubmit={handleSubmit}>
-          <h3>ВХОД</h3>
+          <h3>Log In</h3>
           <label>
             Email:
             <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />

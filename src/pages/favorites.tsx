@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { Head } from '../components/head'
-import PageLayout from '../components/page-layout'
 import { Item } from '../components/item'
-
+import PageLayout from '../components/page-layout'
 import { ItemProps } from '../store/itemSlice'
 
 export const FavoritesPage = () => {

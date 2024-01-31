@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
+
 import './style.css'
-import { useState, useEffect } from 'react'
 
 export interface ItemProps {
   item: {
@@ -15,27 +16,28 @@ export interface ItemProps {
 
 export function Item(props: ItemProps) {
   const type = props.item.type || 'No'
+  const id = props.item.id
 
   const [inFavorite, setInFavorite] = useState<boolean>(() => {
-    return isItemInFavorites(props.item.id);
-  });
+    return isItemInFavorites(id)
+  })
 
   useEffect(() => {
-    let favorites = getFavorites();
+    let favorites = getFavorites()
     if (inFavorite) {
-      if (!isItemInFavorites(props.item.id)) {
-        favorites.push(props.item);
+      if (!isItemInFavorites(id)) {
+        favorites.push(props.item)
       }
     } else {
-      favorites = favorites.filter((item: ItemProps['item']) => item.id !== props.item.id);
+      favorites = favorites.filter((item: ItemProps['item']) => item.id !== id)
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [inFavorite]);
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [inFavorite, props.item, id])
 
   const handleFavorite = () => {
-    setInFavorite(prevState => !prevState);
-  };
-  
+    setInFavorite((prevState) => !prevState)
+  }
+
   return (
     <div className='Item'>
       <img className='Item-image' src={props.item.image} alt={props.item.name} />
@@ -54,10 +56,10 @@ export function Item(props: ItemProps) {
 }
 
 function getFavorites() {
-  return JSON.parse(localStorage.getItem('favorites') || '[]');
+  return JSON.parse(localStorage.getItem('favorites') || '[]')
 }
 
 function isItemInFavorites(id: number): boolean {
-  const favorites = getFavorites();
-  return favorites.some((item: ItemProps['item']) => item.id === id);
+  const favorites = getFavorites()
+  return favorites.some((item: ItemProps['item']) => item.id === id)
 }
