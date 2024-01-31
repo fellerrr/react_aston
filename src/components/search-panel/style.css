@@ -21,4 +21,10 @@
   border: none;
   border-radius: 7px;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.search-button:hover {
+  background-color: #8fbcec;
+  transition: 0.5s;
 }
