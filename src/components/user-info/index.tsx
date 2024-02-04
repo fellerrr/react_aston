@@ -18,7 +18,7 @@ export const UserInfo = ({ email }: UserInfoProps) => {
   return (
     <div className='user-info'>
       <Link to='/'>Home</Link>
-      <span>History</span>
+      <Link to='/search-history'>Search history</Link>
       <Link to='/favorites'>Favorites</Link>
       <div className='user-info__name'>{email}</div>
       <button onClick={userLogout}>Sign out</button>

@@ -3,23 +3,37 @@ import { useContext, useEffect } from 'react'
 import { SearchText } from '../../store/SearchContext'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { fetchItems } from '../../store/itemSlice'
-import { ItemProps } from '../../store/itemSlice'
 import { useGetCharactersQuery } from '../../store/query'
+import { addSearch } from '../../store/searchHistorySlice'
 import { Item } from '../item'
+
+import type { ItemProps } from '../../store/itemSlice'
+
 import './style.css'
 
-export function List() {
+type ListProps = {
+  listHistory?: ItemProps[]
+}
+
+export const List = ({ listHistory }: ListProps) => {
   const { searchText } = useContext(SearchText)
   const dispatch = useAppDispatch()
 
   const { data, isFetching, error: searchError } = useGetCharactersQuery(searchText)
 
   useEffect(() => {
+    if (searchText) {
+      dispatch(addSearch(searchText))
+    }
+    dispatch(fetchItems())
+  }, [dispatch, searchText])
+
+  useEffect(() => {
     dispatch(fetchItems())
   }, [dispatch])
   const { items, status } = useAppSelector((state) => state.items)
 
-  const list = data?.results || items.results
+  const list = listHistory || data?.results || items.results
 
   if (status === 'loading' || isFetching) {
     return <h2 style={{ paddingLeft: '20px' }}>Loading...</h2>

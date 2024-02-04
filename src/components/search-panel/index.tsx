@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { SearchText } from '../../store/SearchContext'
 import { useGetCharactersQuery } from '../../store/query'
@@ -7,6 +8,9 @@ import './style.css'
 export const SearchPanel = () => {
   const [inputValue, setInputValue] = useState('')
   const { searchText, setSearchText } = useContext(SearchText)
+
+  const navigate = useNavigate()
+
   useGetCharactersQuery(searchText)
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -17,6 +21,7 @@ export const SearchPanel = () => {
 
   const handleSearch = () => {
     setSearchText(inputValue)
+    navigate('/')
   }
 
   return (

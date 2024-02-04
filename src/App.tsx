@@ -6,6 +6,8 @@ import { LoginForm } from './features/login'
 import { RegistrationForm } from './features/registration'
 import { FavoritesPage } from './pages/favorites'
 import HomePage from './pages/home'
+import { ResultSearchHistory } from './pages/resultSearchHistory'
+import { SearchHistoryPage } from './pages/searchHistory'
 import { login } from './store/authSlice'
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path='/registration' element={<RegistrationForm />} />
         <Route path='/login' element={<LoginForm />} />
         <Route path='/favorites' element={<FavoritesPage />} />
+        <Route path='/search-history' element={<SearchHistoryPage />} />
+        <Route path='/search/:query' element={<ResultSearchHistory />} />
       </Routes>
     </Router>
   )
