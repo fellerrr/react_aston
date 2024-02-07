@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import { Link } from 'react-router-dom'
 
 import './style.css'
@@ -23,3 +25,7 @@ export const SearchHistoryList: React.FC<SearchHistoryListProps> = ({ searchHist
     </div>
   )
 }
+
+SearchHistoryList.propTypes = {
+  searchHistory: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+};

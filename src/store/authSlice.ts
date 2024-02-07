@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { dataHandler } from '../utils/dataHandler'
+
 const initialState = {
   isLoggedIn: false,
   email: ''
@@ -12,12 +14,12 @@ const authSlice = createSlice({
     login(state, action) {
       state.isLoggedIn = true
       state.email = action.payload.email
-      localStorage.setItem('isLoggedIn', 'true')
+      dataHandler.set('currentUser', state.email)
     },
     logout(state) {
       state.isLoggedIn = false
       state.email = ''
-      localStorage.removeItem('isLoggedIn')
+      dataHandler.remove('currentUser')
     }
   }
 })

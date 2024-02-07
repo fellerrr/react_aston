@@ -1,18 +1,23 @@
 import { useSelector } from 'react-redux'
 
-import { Head } from '../components/head'
-import PageLayout from '../components/page-layout'
-import { SearchHistoryList } from '../components/search-history-list'
+import { Head } from '../components/head/Head'
+import { NavigationWrapper } from '../components/navigation-wrapper/NavigationWrapper'
+import PageLayout from '../components/page-layout/PageLayout'
+import { SearchHistoryList } from '../components/search-history-list/SearchHistoryList'
 
 type SearchHistoryItem = string
 
-export const SearchHistoryPage = () => {
+const SearchHistoryPage = () => {
   const searchHistory = useSelector((state: { searchHistory: SearchHistoryItem[] }) => state.searchHistory)
 
   return (
-    <PageLayout>
-      <Head title='Search History' />
-      <SearchHistoryList searchHistory={searchHistory} />
-    </PageLayout>
+    <NavigationWrapper>
+      <PageLayout>
+        <Head title='Search History' />
+        <SearchHistoryList searchHistory={searchHistory} />
+      </PageLayout>
+    </NavigationWrapper>
   )
 }
+
+export default SearchHistoryPage

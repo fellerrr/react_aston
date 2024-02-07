@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { ReactNode } from 'react'
-
 import './style.css'
 
 interface PageLayoutProps {
@@ -10,4 +10,8 @@ function PageLayout({ children }: PageLayoutProps) {
   return <div className='PageLayout'>{children}</div>
 }
 
-export default PageLayout
+PageLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default PageLayout;

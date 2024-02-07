@@ -9,9 +9,16 @@ export const rickAndMortyApi = createApi({
     getCharacters: builder.query({
       query: (name) => `character/?name=${name}`,
       providesTags: ['Character']
+    }),
+    getCharacter: builder.query({
+      query: (id) => `character/${id}`
+    }),
+    getEpisode: builder.query({
+      query: (id) => (id ? `episode/${id}` : ''),
+      transformResponse: (response) => (Array.isArray(response) ? response : [response])
     })
   })
 })
 
 // Экспорт хуков для использования в функциональных компонентах
-export const { useGetCharactersQuery } = rickAndMortyApi
+export const { useGetCharactersQuery, useGetCharacterQuery, useGetEpisodeQuery } = rickAndMortyApi

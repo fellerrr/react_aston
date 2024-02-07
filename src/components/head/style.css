@@ -1,10 +1,43 @@
 .Head {
   padding-top: 20px;
   height: 140px;
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
 }
 
 .Head h1 {
   margin: 0;
   padding: 20px 20px 10px;
+}
+
+.Head.light {
+  background: #f5f5f5;
+  color: black;
+}
+
+.Head.dark {
+  background-color: black;
+  color: white;
+}
+
+.hChange {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  background-color: lightblue;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8fbcec;
+  transition: 0.5s;
 }

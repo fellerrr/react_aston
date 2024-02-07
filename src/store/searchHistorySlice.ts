@@ -1,22 +1,35 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { getCurrentUser } from '../entities/user/model'
+
+import { dataHandler } from '../utils/dataHandler'
+
 type SearchHistoryItem = string
 
-// Получение истории поиска из localStorage при инициализации
-const initialSearchHistory: SearchHistoryItem[] = JSON.parse(localStorage.getItem('searchHistory') || '[]')
+const getInitialSearchHistory = (): SearchHistoryItem[] => {
+  const user = getCurrentUser()
+  return user ? dataHandler.get(`searchHistory-${user}`) || [] : []
+}
 
 const searchHistorySlice = createSlice({
   name: 'searchHistory',
-  initialState: initialSearchHistory,
+  initialState: getInitialSearchHistory(),
   reducers: {
     addSearch: (state, action: PayloadAction<SearchHistoryItem>) => {
-      state.unshift(action.payload)
-      // Сохранение истории поиска в localStorage после каждого добавления
-      localStorage.setItem('searchHistory', JSON.stringify(state))
+      const user = getCurrentUser()
+      if (user) {
+        if (!state.includes(action.payload)) {
+          state.unshift(action.payload)
+          dataHandler.set(`searchHistory-${user}`, state)
+        }
+      }
+    },
+    clearStateSearchHistory: () => {
+      return []
     }
   }
 })
 
-export const { addSearch } = searchHistorySlice.actions
+export const { addSearch, clearStateSearchHistory } = searchHistorySlice.actions
 
 export default searchHistorySlice.reducer

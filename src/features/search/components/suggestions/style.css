@@ -1,0 +1,20 @@
+.suggestion-block {
+	position: absolute;
+	width: 30%;
+	top: 80%;
+	background-color: #e6e6e6;
+	border-radius: 5px;
+  }
+  
+  .suggestion {
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 7px;
+	background-color: #e6e6e6;
+	transition: background-color 0.3s ease;
+  }
+  
+  .suggestion:hover {
+	background-color: #d4d4d4;
+  }
+  

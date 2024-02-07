@@ -1,9 +1,19 @@
-.search-panel {
+.SearchPanel {
+  position: relative; /* Добавьте это, чтобы сделать SearchPanel родительским элементом для предложений */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 20px 10px;
   background: #f5f5f5;
+}
+
+.SearchPanel.light {
+  background: #f5f5f5;
+}
+
+.SearchPanel.dark {
+  background: black;
+  color: white;
 }
 
 .search-input {
@@ -27,4 +37,24 @@
 .search-button:hover {
   background-color: #8fbcec;
   transition: 0.5s;
+}
+
+.suggestion-block {
+  position: absolute;
+  width: 30%;
+  top: 80%;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+}
+
+.suggestion {
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 7px;
+  background-color: #e6e6e6;
+  transition: background-color 0.3s ease;
+}
+
+.suggestion:hover {
+  background-color: #d4d4d4;
 }

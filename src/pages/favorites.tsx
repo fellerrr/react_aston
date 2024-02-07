@@ -1,28 +1,29 @@
-import { useEffect, useState } from 'react'
+import { Head } from '../components/head/Head'
+import { List } from '../components/list/List'
+import { NavigationWrapper } from '../components/navigation-wrapper/NavigationWrapper'
+import PageLayout from '../components/page-layout/PageLayout'
+import { getCurrentUser } from '../entities/user/model'
+import { useFavorites } from '../hooks/useFavorites'
+import { useAppSelector } from '../store/hooks'
 
-import { Head } from '../components/head'
-import { Item } from '../components/item'
-import PageLayout from '../components/page-layout'
-import { ItemProps } from '../store/itemSlice'
+const FavoritesPage = () => {
+  const user = getCurrentUser()
+  const isDelete = useAppSelector((state) => state.isDelete.isDelete)
 
-export const FavoritesPage = () => {
-  const [favorites, setFavorites] = useState([])
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-    setFavorites(storedFavorites)
-  }, [])
+  const favorites = useFavorites(user, isDelete)
 
   return (
-    <PageLayout>
-      <Head title='Favorites' />
-      <div className='List'>
-        {favorites.map((item: ItemProps) => (
-          <div className='List-item' key={item.id}>
-            <Item item={item} />
-          </div>
-        ))}
-      </div>
-    </PageLayout>
+    <NavigationWrapper>
+      <PageLayout>
+        <Head title='Favorites' />
+        {favorites.length === 0 ? (
+          <div style={{ padding: '40px' }}>Favorites is empty</div>
+        ) : (
+          <List listCustom={favorites} />
+        )}
+      </PageLayout>
+    </NavigationWrapper>
   )
 }
+
+export default FavoritesPage

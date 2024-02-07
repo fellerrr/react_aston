@@ -25,3 +25,8 @@
   margin-top: 80px;
   margin-left: 10px;
 }
+
+.favorite:hover {
+  color: gold;
+  border-radius: 10%;
+}

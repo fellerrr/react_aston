@@ -2,17 +2,23 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { logout } from '../../store/authSlice'
+import { clearStateSearchHistory } from '../../store/searchHistorySlice'
+
 import './style.css'
+
 
 type UserInfoProps = {
   email: string
+  setUser: (user: string) => void
 }
 
-export const UserInfo = ({ email }: UserInfoProps) => {
+export const UserInfo = ({ email, setUser }: UserInfoProps) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userLogout = () => {
     dispatch(logout())
+    dispatch(clearStateSearchHistory())
+    setUser('')
     navigate('/')
   }
   return (
