@@ -2,11 +2,20 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import PageLayout from '../../components/page-layout'
+import { Head } from '../../components/head/Head'
+import PageLayout from '../../components/page-layout/PageLayout'
 import { login } from '../../store/authSlice'
+import { reloadStateSearchHistory } from '../../store/searchHistorySlice' 
+import { dataHandler } from '../../utils/dataHandler'
+
 import './style.css'
 
-export const LoginForm = () => {
+type Props = {
+  email: string
+  password: string
+}
+
+const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -17,19 +26,24 @@ export const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const storedEmail = localStorage.getItem('email')
-    const storedPassword = localStorage.getItem('password')
+    const storedUserJson: Props | null = dataHandler.get(email)
 
-    if (email === storedEmail && password === storedPassword) {
-      dispatch(login({ email }))
-      navigate('/')
+    if (storedUserJson) {
+      if (password === storedUserJson.password) {
+        dispatch(login({ email }))
+        dispatch(reloadStateSearchHistory())
+        navigate('/')
+      } else {
+        setError('Invalid password')
+      }
     } else {
-      setError('Invalid email address or password')
+      setError('Invalid email address')
     }
   }
 
   return (
     <PageLayout>
+      <Head title='Login' />
       <div className='container-form'>
         <form className='login-form' onSubmit={handleSubmit}>
           <h3>Log In</h3>
@@ -50,3 +64,5 @@ export const LoginForm = () => {
     </PageLayout>
   )
 }
+
+export default LoginForm

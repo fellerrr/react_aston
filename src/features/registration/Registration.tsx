@@ -2,16 +2,21 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import PageLayout from '../../components/page-layout'
+import PageLayout from '../../components/page-layout/PageLayout'
 import { login } from '../../store/authSlice'
+import { Head } from '../../components/head/Head'
+import { dataHandler } from '../../utils/dataHandler'
+
+
 import './style.css'
+
 
 type FormData = {
   email: string
   password: string
 }
 
-export const RegistrationForm = () => {
+const RegistrationForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -22,14 +27,16 @@ export const RegistrationForm = () => {
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(({ email, password }) => {
-    localStorage.setItem('email', email)
-    localStorage.setItem('password', password)
+    dataHandler.set(email, { email, password })
+
     dispatch(login({ email }))
+
     navigate('/')
   })
 
   return (
     <PageLayout>
+      <Head title='Registration' />
       <div className='container-form'>
         <form className='registration-form' onSubmit={onSubmit}>
           <span>REGISTRATION</span>
@@ -65,3 +72,5 @@ export const RegistrationForm = () => {
     </PageLayout>
   )
 }
+
+export default RegistrationForm

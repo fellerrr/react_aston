@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-
 import './style.css'
+import { Link } from 'react-router-dom'
 
 export const Controls = () => {
   return (
     <div className='controls'>
       <div className='buttons'>
+        <Link to='/' className='button'>Home</Link>
         <Link to='/login' className='button'>
           Sign in
         </Link>
