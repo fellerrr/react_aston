@@ -1,4 +1,3 @@
-// hooks/useFavorites.ts
 import { useEffect, useState } from 'react'
 
 import { getItems } from '../utils/storage'

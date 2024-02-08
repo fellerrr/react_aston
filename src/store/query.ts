@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Определение сервиса с использованием базового URL и ожидаемых конечных точек
 export const rickAndMortyApi = createApi({
   reducerPath: 'rickAndMortyApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://rickandmortyapi.com/api/' }),
@@ -20,5 +19,4 @@ export const rickAndMortyApi = createApi({
   })
 })
 
-// Экспорт хуков для использования в функциональных компонентах
 export const { useGetCharactersQuery, useGetCharacterQuery, useGetEpisodeQuery } = rickAndMortyApi
