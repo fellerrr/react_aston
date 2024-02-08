@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { getCurrentUser } from '../../entities/user/model'
@@ -18,9 +18,9 @@ export function Head({ title }: HeadProps) {
   const [userName, setUserName] = useState(getCurrentUser())
   const [theme, setTheme] = useState('light')
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
-  }
+  }, [])
 
   const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
 
