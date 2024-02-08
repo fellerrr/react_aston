@@ -28,15 +28,15 @@ export function Item({ item, userEmail }: ItemProps) {
 
     if (userEmail) {
       setInFavorite((prevState) => !prevState)
+      dispatch(deleteFavorites())
     }
   }
 
   useEffect(() => {
     if (userEmail) {
       updateFavorites(item, inFavorite, userEmail)
-      dispatch(deleteFavorites())
     }
-  }, [inFavorite, item, id, userEmail,dispatch])
+  }, [inFavorite, item, id, userEmail, dispatch])
 
   return (
     <div className='Item'>
