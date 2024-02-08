@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { getCurrentUser } from '../../entities/user/model'
 import { Controls } from '../controls/Controls'
-// import { SearchPanel } from '../search-panel/SearchPanel'
+
 import { SearchPanel } from '../../features/search/components/search-panel/SearchPanel'
 import { UserInfo } from '../user-menu/UserMenu'
 
@@ -22,8 +22,10 @@ export function Head({ title }: HeadProps) {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
   }
 
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
       <div className={`Head ${theme}`}>
         <div className='controls'>
           <h1>{title}</h1>

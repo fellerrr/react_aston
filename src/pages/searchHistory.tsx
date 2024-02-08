@@ -9,7 +9,7 @@ type SearchHistoryItem = string
 
 const SearchHistoryPage = () => {
   const searchHistory = useSelector((state: { searchHistory: SearchHistoryItem[] }) => state.searchHistory)
-
+  
   return (
     <NavigationWrapper>
       <PageLayout>

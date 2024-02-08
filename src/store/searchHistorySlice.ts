@@ -6,7 +6,7 @@ import { dataHandler } from '../utils/dataHandler'
 
 type SearchHistoryItem = string
 
-const getInitialSearchHistory = (): SearchHistoryItem[] => {
+export const getInitialSearchHistory = (): SearchHistoryItem[] => {
   const user = getCurrentUser()
   return user ? dataHandler.get(`searchHistory-${user}`) || [] : []
 }
@@ -26,10 +26,17 @@ const searchHistorySlice = createSlice({
     },
     clearStateSearchHistory: () => {
       return []
+    },
+    reloadStateSearchHistory: (state) => {
+      const user = getCurrentUser()
+      if (user) {
+        const newHistory = dataHandler.get(`searchHistory-${user}`) as SearchHistoryItem[];
+        state.splice(0, state.length, ...newHistory)
+      }
     }
   }
 })
 
-export const { addSearch, clearStateSearchHistory } = searchHistorySlice.actions
+export const { addSearch, clearStateSearchHistory, reloadStateSearchHistory } = searchHistorySlice.actions
 
 export default searchHistorySlice.reducer

@@ -5,10 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import { Head } from '../../components/head/Head'
 import PageLayout from '../../components/page-layout/PageLayout'
 import { login } from '../../store/authSlice'
+import { reloadStateSearchHistory } from '../../store/searchHistorySlice' 
 import { dataHandler } from '../../utils/dataHandler'
 
 import './style.css'
 
+type Props = {
+  email: string
+  password: string
+}
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -21,11 +26,12 @@ const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const storedUserJson = dataHandler.get(email)
+    const storedUserJson: Props | null = dataHandler.get(email)
 
     if (storedUserJson) {
       if (password === storedUserJson.password) {
         dispatch(login({ email }))
+        dispatch(reloadStateSearchHistory())
         navigate('/')
       } else {
         setError('Invalid password')
