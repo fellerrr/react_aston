@@ -5,7 +5,7 @@ import { getCurrentUser } from '../../entities/user/model'
 import { Controls } from '../controls/Controls'
 
 import { SearchPanel } from '../../features/search/components/search-panel/SearchPanel'
-import { UserInfo } from '../user-menu/UserMenu'
+import { UserMenu } from '../user-menu/UserMenu'
 
 import './style.css'
 
@@ -30,7 +30,7 @@ export function Head({ title }: HeadProps) {
         <div className='controls'>
           <h1>{title}</h1>
           <div className='hChange'>
-            {userName ? <UserInfo email={userName} setUser={setUserName} /> : <Controls />}
+            {userName ? <UserMenu email={userName} setUser={setUserName} /> : <Controls />}
             <button onClick={toggleTheme}>change theme</button>
           </div>
         </div>

@@ -12,7 +12,7 @@ type UserInfoProps = {
   setUser: (user: string) => void
 }
 
-export const UserInfo = ({ email, setUser }: UserInfoProps) => {
+export const UserMenu = ({ email, setUser }: UserInfoProps) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userLogout = () => {
